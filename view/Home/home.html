@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript" src="../../js/flexible.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../fonts/iconfont.css" />
+		<link rel="stylesheet" href="../../css/style.css" />
+	</head>
+
+	<body id="home">
+
+		<header class="mui-bar mui-bar-nav  w-home-bar" id="w-home-bar">
+			<a class="mui-action-back mui-icon iconfont icon-jiantou mui-pull-left"></a>
+			<div class="mui-title">
+				<span class="mui-icon iconfont icon-sousuo  mui-pull-right"></span>
+				<input type="search"  placeholder="请输入您要找的商品" class="input-select"  data-href="../Classify/allclass.html" data-id="" onchange="selectinput(this)"/>
+
+			</div>
+			<a class="mui-icon iconfont icon-zhuye2 mui-pull-right"></a>
+		</header>
+
+		<script src="../../js/mui.min.js"></script>
+				<script src="../../js/common.js"></script>
+		<script type="text/javascript">
+			mui.init();
+function selectinput(_this){
+		  
+				var  prdName=_this.value;
+				
+				if(prdName!=""){
+					_this.setAttribute('data-id',prdName);
+					toUrl(_this);
+				}
+		}
+			
+			mui.plusReady(function() {
+				var styles = {
+					top: document.getElementById('w-home-bar').offsetHeight + 'px',
+					bottom: "0px",
+					dock: 'top',
+					hardwareAccelerated: false,
+					//					scrollIndicator:'none'
+
+				};
+                
+               var self = plus.webview.currentWebview();
+//              plus.webview.getLaunchWebview().addEventListener('loaded',function(){
+//			    	 plus.webview.getLaunchWebview().append(self);
+//			    },false);
+				var sub = plus.webview.create("./home-content.html", 'homeContent', styles);
+                    
+			  
+				self.append(sub);
+				sub.addEventListener('loaded', function() {
+					sub.show("slide-in-right",false,function(){
+						//alert();
+						 // plus.navigator.closeSplashscreen();
+						//plus.nativeUI.toast("加载完毕.........");
+					});
+				}, false);
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript" src="../../js/flexible.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../fonts/iconfont.css" />
+		<link rel="stylesheet" href="../../css/style.css" />
+	</head>
+
+	<body style="background: #fff;">
+		<header class="mui-bar mui-bar-nav  details-top-bar">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<!--<h1 class="mui-title">导航栏</h1>-->
+			<a class="mui-icon  iconfont icon-naviconhome mui-pull-right"></a>
+			<!--<a class="mui-icon  iconfont icon-fenxiang mui-pull-right"></a>-->
+<!--			<a class="mui-icon  iconfont icon-fenxiang mui-pull-right" onclick="shareShow()"></a>
+-->		</header>
+
+		<div class="mui-slider">
+			<div class="mui-slider-group" id="mui-slider-group">
+				   
+				
+			</div>
+		</div>
+	
+		<div class="click-show-imgs mui-navigate-right">
+			商铺介绍
+		</div>
+		<div class="details-text" id="details-text" >
+
+		</div>
+		<div class="details-imgs" >
+			
+			
+			<!--<p><img src="https://img.alicdn.com/imgextra/i3/875501526/TB2uUzujSXlpuFjy0FeXXcJbFXa_!!875501526.jpg"></p>
+			<p><img src="https://img.alicdn.com/imgextra/i4/875501526/TB2aoDujSXlpuFjy0FeXXcJbFXa_!!875501526.jpg"></p>
+		--></div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/common.js"></script>
+		<script type="text/javascript" src="../../js/Hcommon.js"></script>
+		<script type="text/javascript" src="../../js/share.js"></script>
+		<script>
+			mui.init();
+			var shares = null;
+			// H5 plus事件处理
+			function plusReady() {
+				//updateSerivces();
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+			var gallery = mui('.mui-slider');
+			gallery.slider({
+				interval: 0 //自动轮播周期，若为0则不自动播放，默认为0；
+			});
+		
+			window.addEventListener('id', function(event) {
+	
+			
+					mui.ajax(BASEURL+'/homeInfo.action?homeType=PS&vndCd='+event.detail.id, {
+
+						dataType: 'json', //服务器返回json格式数据
+						type: 'get', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						success:function(data) {
+
+						if(data.result == "success") {
+
+						
+							var data = data.data;
+							console.log("----->"+JSON.stringify(data));
+							document.getElementById('mui-slider-group').innerHTML='<div class="mui-slider-item"><a href="#"><img src="'+BASEURL+data[0]['vndImg']+'" /></a></div>';
+                               document.getElementById('details-text').textContent= data[0]['vndName'];  
+
+						} else if(data.result == "fail") {
+							mui.toast(data.msg, {
+								duration: 'long',
+								type: 'div'
+							});
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true)
+						}
+
+					},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							console.log(type);
+						}
+					});
+				
+			}, false)
+		</script>
+	</body>
+
+</html>

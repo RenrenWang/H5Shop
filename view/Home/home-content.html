@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript" src="../../js/flexible.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../fonts/iconfont.css" />
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../css/style.css" />
+	</head>
+
+	<body id="home-content">
+
+		<div class="w-content">
+
+			<div class="mui-slider w-top-slider">
+				<div class="mui-slider-group "><!--mui-slider-loop-->
+					<!--<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#"><img src="https://aecpm.alicdn.com/simba/img/TB1_JXrLVXXXXbZXVXXSutbFXXX.jpg" /></a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#"><img src="https://aecpm.alicdn.com/simba/img/TB1_JXrLVXXXXbZXVXXSutbFXXX.jpg" /></a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#"><img src="https://aecpm.alicdn.com/simba/img/TB1W4nPJFXXXXbSXpXXSutbFXXX.jpg" /></a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#"><img src="https://aecpm.alicdn.com/simba/img/TB1W4nPJFXXXXbSXpXXSutbFXXX.jpg" /></a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#"><img src="https://aecpm.alicdn.com/simba/img/TB1_JXrLVXXXXbZXVXXSutbFXXX.jpg" /></a>
+					</div>
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#"><img src="https://aecpm.alicdn.com/simba/img/TB1_JXrLVXXXXbZXVXXSutbFXXX.jpg" /></a>
+					</div>-->
+				</div>
+				<div class="mui-slider-indicator">
+				
+				</div>
+			</div>
+			<div class="section">
+				<div class="section-top">
+					<h2 class="bullhorn"><span class="mui-icon  iconfont  icon-yingyongtubiao"></span><span class="tit">每天10更新特价商品</span></h2>
+				</div>
+				<div class="section-content">
+					<ul class="grid-10" id="kind-list">
+						<!--<li onclick="toUrl(this,1)" data-href="../Classify/classify.html">
+							<img src="./kind_1.png" />
+						</li>
+						<li onclick="toUrl(this,1)" data-href="../Classify/classify.html">
+							<img src="./kind_2.png" />
+						</li>
+						<li>
+							<img src="./kind_3.png" />
+						</li>
+						<li>
+							<img src="./kind_4.png" />
+						</li>
+						<li>
+							<img src="./kind_5.png" />
+						</li>
+						<li>
+							<img src="./kind_6.png" />
+						</li>
+						<li>
+							<img src="./kind_7.png" />
+						</li>
+						<li>
+							<img src="./kind_8.png" />
+						</li>
+						<li>
+							<img src="./kind_9.png" />
+						</li>
+						<li>
+							<img src="./kind_10.png" />
+						</li>-->
+					</ul>
+				</div>
+			</div>
+			<div class="section">
+				<div class="section-top" style="position: relative;">
+					<h2 class="title"><span class="bold-tit">潮店名品</span></span><span class="tit">好货低价购</span></h2>
+					<a href="javascript:;" id="more-btn" class="mui-pull-right" style="position: absolute;right: 0;top:50%;transform: translateY(-50%);margin-right: 15px;font-size:13px;color: #e64275;">更多</a>
+				</div>
+				<div class="section-content">
+					<ul class="grid-10" id="shop-list">
+					
+						
+					</ul>
+				</div>
+			</div>
+			<div class="section">
+				<div class="section-top">
+					<h2 class="title"><span class="bold-tit">今日专享</span></span><span class="tit">疯狂抢购</span></h2>
+				</div>
+				<div class="section-content" style="background: #efeff4;padding: 0;">
+					<!--数据列表-->
+					<div id="pullrefresh" class="mui-content mui-scroll-wrapper classify-wrapper">
+						<div class="mui-scroll">
+							<!--数据列表-->
+							<ul class="mui-table-view classify-list" style=" padding-top: 0px;">
+							</ul>
+						</div>
+					</div>	
+					<!--<ul class="grid-3">
+						<li>
+							<div class="mui-card">
+								<div class="mui-card-header mui-card-media" style="background-image:url(https://img.alicdn.com/tfs/TB10JB.QVXXXXa8XXXXXXXXXXXX-492-660.jpg)"></div>
+								<div class="mui-card-content">
+									<div class="mui-card-content-inner">
+										<p>这里商品标题这里商品标题</p>
+
+									</div>
+								</div>
+								<div class="mui-card-footer">
+									<span class="red new-rmb">￥199.00</span>
+									<span class="old-rmb">￥399.00</span>
+								</div>
+							</div>
+						</li>
+						
+					</ul>-->
+				</div>
+			</div>
+
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				pullRefresh: {
+					container: "#pullrefresh", //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+					up: {
+						height: 50, //可选.默认50.触发上拉加载拖动距离
+						auto: true, //可选,默认false.自动上拉加载一次
+						contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+						contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: pullupRefresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					}
+				}
+			});
+
+			var ws = null;
+
+			// 扩展API加载完毕，现在可以正常调用扩展API 
+
+			function plusReady() {
+
+				mui('.mui-slider').slider({
+					interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
+				});
+
+				ws = plus.webview.currentWebview();
+				//				ws.addEventListener('loaded', function() {
+				//					plus.nativeUI.closeWaiting();
+				//                    
+				//				}, false);
+				ws.setPullToRefresh({
+					support: true,
+					height: "50px",
+					range: "200px",
+
+					contentdown: {
+						caption: "下拉可以刷新"
+					},
+					contentover: {
+						caption: "释放立即刷新"
+					},
+					contentrefresh: {
+						caption: "正在刷新..."
+					}
+				}, onRefresh);
+				//plus.nativeUI.toast("下拉可以刷新");
+
+			}
+			// 判断扩展API是否准备，否则监听"plusready"事件
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener("plusready", plusReady, false);
+			}
+			
+//				<div class="mui-indicator mui-active"></div>
+//					<div class="mui-indicator"></div>
+//					<div class="mui-indicator"></div>
+//					
+			// DOM构建完成获取列表元素
+			
+			document.addEventListener("DOMContentLoaded", function() {
+				
+				//轮播图
+				_ajax(BASEURL + "/homeInfo.action?callback=jQuery18306862034124787897_1444874513140&homeType=HI", function(data) {
+				
+					if(data.result == "success") {
+						var siderC= document.body.querySelector('.mui-slider-indicator');
+						var sider = document.body.querySelector('.mui-slider-group');
+						var itemCHtml="";
+						for(var i=0;i<data.data.length;i++){
+							console.log(data.data[i]['prdNuri']);
+						
+							var item = document.createElement('div');
+						
+							item.className = 'mui-slider-item';
+						
+							item.innerHTML ='<a onclick="toUrl(this)"  data-href="../Details/details.html" data-id="'+data.data[i]['prdCd']+'"><img src="'+BASEURL+data.data[i]['prdNuri']+'" /></a>';
+						    if(i==0){
+						    	itemCHtml+='<div class="mui-indicator mui-active"></div>'
+						    }else{
+						    	itemCHtml+='<div class="mui-indicator"></div>'
+						    }
+						   
+							sider.appendChild(item);
+							
+						}
+						console.log(itemCHtml)
+						siderC.innerHTML=itemCHtml;
+					}
+
+				});
+				//分类<ul class="grid-10" id="kind-list">
+					
+				_ajax(BASEURL+'/homeInfo.action?homeType=HL',function(data){
+              	   	if(data.result == "success") {
+              	   		var list=data.data;
+              	   		var $list=document.getElementById('kind-list');
+              	   		var html="";
+              	   		for(var i=0;i<list.length;i++){
+              	   		
+              	   			html+='<li onclick="toUrl(this)"  data-href="../Classify/classify.html" data-id="'+list[i]['ptyCd']+'"> <img src="'+BASEURL+list[i]['ptyImg']+'" /></li>'
+              	   		}
+              	   		$list.innerHTML=html;
+              	   	}
+              })
+				//推荐商铺
+              _ajax(BASEURL+'/homeInfo.action?homeType=HP',function(data){
+              	   	if(data.result == "success") {
+              	   		var list=data.data;
+              	   		var $list=document.getElementById('shop-list');
+              	   		var html="";
+              	   		for(var i=0;i<5;i++){
+              	   		
+              	   			html+='<li data-href="../Stores/shopD.html" data-id='+list[i]['vndCd']+' onclick="toUrl(this)"> <img src="'+BASEURL+list[i]['vndImg']+'" /></li>'
+              	   		}
+              	   		$list.innerHTML=html;
+              	   	}
+              })
+			})
+			
+			
+			
+			
+			
+			// 刷新页面
+			function onRefresh() {
+
+				setTimeout(function() {
+					console.log("下拉");
+					ws.endPullToRefresh();
+				}, 2000);
+			}
+
+
+             //上啦加载
+             
+             var page = 1;
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			//var BASEURL="http://121.40.241.28:7070/app";
+	
+
+			function pullupRefresh() {
+
+		
+				mui.ajax(BASEURL + '/homeInfo.action?homeType=HF&pageno' + page, {
+
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					success: function(data) {
+
+						if(data.result == "success") {
+
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(++page > data.maxpage);
+							var data = data.data;
+
+							//参数为true代表没有更多数据了。
+							var table = document.body.querySelector('.mui-table-view');
+							var cells = document.body.querySelectorAll('.mui-table-view-cell');
+							for(var i = 0; i < data.length; i++) {
+								var li = document.createElement('li');
+							    //var id=(data[i]['prdCd']).split('PR_');
+							    var id=data[i]['prdCd'];
+							   // console.log(typeof id);
+								li.className = 'mui-table-view-cell mui-media';
+								li.innerHTML = '<a data-href="../Details/details.html" data-id='+id+' onclick="toUrl(this)">' +
+							'<img class="mui-media-object mui-pull-left" src="'+BASEURL+data[i]['prdUri']+'">' +
+							'<div class="mui-media-body">' +
+							'<h3 class="text-hidden">'+data[i]['prdName']+'</h3>' +
+							'<p class="mui-ellipsis">销量：'+data[i]['prdNums']+'</p>' +
+							'<p class="mui-ellipsis">原价：￥'+data[i]['prdOldprice']+'</p>' +
+							'<p  class="mui-ellipsis">现价:<span class=" rmb">￥'+data[i]['prdZkprice']+'</span></p>' +
+							'</div>' +
+							'</a>';
+								table.appendChild(li);
+
+							}
+
+						} else if(data.result == "fail") {
+							mui.toast(data.msg, {
+								duration: 'long',
+								type: 'div'
+							});
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true)
+						}
+
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast("数据获取失败", {
+							duration: 'long',
+							type: 'div'
+						});
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true)
+					}
+				});
+			}
+			
+			document.getElementById('more-btn').addEventListener('tap',function(){
+				 var main = plus.webview.getLaunchWebview();
+			//触发主页面的gohome事件
+		   	mui.fire(main,'goshop');
+			},false)
+			/*
+			 
+			 * 轮播图*/
+
+			/*
+			 
+			 * 数据获取
+			 * 
+			 * */
+
+			function _ajax(url, dataCallback) {
+				mui.ajax(url, {
+
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					success: dataCallback,
+					error: function(xhr, type, errorThrown) {
+						//异常处理；
+						console.log(type);
+					}
+				});
+			}
+			//页面跳转
+			var lastView = null;
+
+			function toUrl(_this) {
+				
+				var href = _this.getAttribute('data-href');
+				var id = _this.getAttribute('data-id');
+				
+				if(href == lastView) {
+					return;
+				}
+				
+
+				var page_clssify = null;
+
+				var styles = {
+					top: '0px',
+					bottom: "0px",
+					hardwareAccelerated: false,
+					scrollIndicator: "none"
+				};
+
+			
+				page_clssify = plus.webview.create(href, href, styles);
+				mui.fire(page_clssify, 'id', {
+					id: id
+				});
+				page_clssify.addEventListener('loaded', function() {
+					
+					setTimeout(function() {
+						page_clssify.show('slide-in-right', 300);
+					}, 100);
+				}, false);
+				
+
+				page_clssify.addEventListener('close', function() { //页面关闭后可再次打开
+					lastView = null;
+
+				}, false);
+
+				lastView = href;
+
+			}
+		</script>
+	</body>
+
+</html>

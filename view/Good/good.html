@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<script type="text/javascript" src="../../js/flexible.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../fonts/iconfont.css" />
+		<link rel="stylesheet" href="../../css/style.css" />
+		<style>
+			.classify-list {
+				padding-top: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav  w-home-bar" id="w-home-bar">
+			<a class="mui-action-back mui-icon iconfont icon-jiantou mui-pull-left"></a>
+			<div class="mui-title">
+				<span class="mui-icon iconfont icon-sousuo  mui-pull-right"></span>
+								<input type="search"  placeholder="请输入您要找的商品" class="input-select" onchange="selectinput(this)"/>
+
+
+			</div>
+			<a class="mui-icon iconfont icon-zhuye2 mui-pull-right"></a>
+		</header>
+		<div class="mui-content">
+
+			<!--下拉刷新容器-->
+
+			<div id="pullrefresh" class="classify-wrapper">
+				<div class="mui-scroll">
+					<!--数据列表-->
+					<div class="mui-slider w-top-slider">
+						<div class="mui-slider-group">
+
+						</div>
+						<div class="mui-slider-indicator">
+
+						</div>
+					</div>
+
+					<ul class="mui-table-view classify-list">
+
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				pullRefresh: {
+					container: "#pullrefresh", //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+					up: {
+						height: 50, //可选.默认50.触发上拉加载拖动距离
+						auto: true, //可选,默认false.自动上拉加载一次
+						contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+						contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: pullupRefresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					}
+				}
+			});
+		
+			var ws = null;
+
+			function plusReady() {
+				mui('.mui-slider').slider({
+					interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
+				});
+				ws = plus.webview.currentWebview();
+
+			}
+
+			// 判断扩展API是否准备，否则监听"plusready"事件
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener("plusready", plusReady, false);
+			}
+			window.addEventListener('classId', function(event) {
+				console.log(JSON.stringify(event.detail.id))
+			}, false)
+
+			// DOM构建完成获取列表元素
+		
+			document.addEventListener("DOMContentLoaded", function() {
+				_ajax(BASEURL + "/homeInfo.action?callback=jQuery18306862034124787897_1444874513140&homeType=HI", function(data) {
+
+					if(data.result == "success") {
+						var siderC = document.body.querySelector('.mui-slider-indicator');
+						var sider = document.body.querySelector('.mui-slider-group');
+						var itemCHtml = "";
+						for(var i = 0; i < data.data.length; i++) {
+							console.log(data.data[i]['prdNuri']);
+
+							var item = document.createElement('div');
+
+							item.className = 'mui-slider-item';
+
+							item.innerHTML = '<a onclick="toUrl(this)"  data-href="../Details/details.html" data-id="'+data.data[i]['prdCd']+'"><img src="' + BASEURL + data.data[i]['prdNuri'] + '" /></a>';
+							if(i == 0) {
+								itemCHtml += '<div class="mui-indicator mui-active"></div>'
+							} else {
+								itemCHtml += '<div class="mui-indicator"></div>'
+							}
+
+							sider.appendChild(item);
+
+						}
+						console.log(itemCHtml)
+						siderC.innerHTML = itemCHtml;
+					}
+
+				});
+			});
+
+			function _ajax(url, dataCallback) {
+				mui.ajax(url, {
+
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					success: dataCallback,
+					error: function(xhr, type, errorThrown) {
+						//异常处理；
+						console.log(type);
+					}
+				});
+			}
+
+			function back(hide) {
+				if(window.plus) {
+					ws || (ws = plus.webview.currentWebview());
+					if(hide || ws.preate) {
+						ws.hide('fade-out');
+					} else {
+						ws.close('fade-out');
+					}
+				} else if(history.length > 1) {
+					history.back();
+				} else {
+					window.close();
+				}
+			};
+
+			var page = 1;
+			var prdName="";
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			//var BASEURL="http://121.40.241.28:7070/app";
+			//var BASEURL = "http://192.168.2.175:8080/app";
+
+			function pullupRefresh() {
+
+				mui.ajax(BASEURL + '/homeInfo.action?homeType=YF&pageno=' + page+'&prdName='+prdName, {
+
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					success: function(data) {
+
+						if(data.result == "success") {
+
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(++page > data.maxpage);
+							var data = data.data;
+
+							//参数为true代表没有更多数据了。
+							var table = document.body.querySelector('.mui-table-view');
+							var cells = document.body.querySelectorAll('.mui-table-view-cell');
+							for(var i = 0; i < data.length; i++) {
+								var li = document.createElement('li');
+								li.className = 'mui-table-view-cell mui-media';
+								li.innerHTML = '<a data-href="../Details/details.html" data-id='+data[i]['prdCd']+'  onclick="toUrl(this)">' +
+									'<img class="mui-media-object mui-pull-left" src="' + BASEURL + data[i]['prdUri'] + '">' +
+									'<div class="mui-media-body">' +
+									'<h3 class="text-hidden">' + data[i]['prdName'] + '</h3>' +
+									'<p class="mui-ellipsis">销量：' + data[i]['prdNums'] + '</p>' +
+									'<p class="mui-ellipsis">原价：￥' + data[i]['prdOldprice'] + '</p>' +
+									'<p  class="mui-ellipsis">现价:<span class=" rmb">￥' + data[i]['prdZkprice'] + '</span></p>' +
+									'</div>' +
+									'</a>';
+								table.appendChild(li);
+
+							}
+
+						} else if(data.result == "fail") {
+							mui.toast(data.msg, {
+								duration: 'long',
+								type: 'div'
+							});
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true)
+						}else{
+						   mui('#pullrefresh').pullRefresh().endPullupToRefresh(true)
+
+						}
+
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast("数据获取失败", {
+							duration: 'long',
+							type: 'div'
+						});
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true)
+					}
+				});
+			}
+			
+			 function selectinput(_this){
+		  
+				 prdName=_this.value;
+				
+				if(prdName!=""){
+					 page =1;
+		
+			 
+				var table = document.body.querySelector('.mui-table-view');
+			 table.innerHTML="";
+			 pullupRefresh();
+			
+			 mui('#pullrefresh').pullRefresh().refresh(true);
+				}
+			}
+			//页面跳转
+			var lastView = null;
+
+			function toUrl(_this) {
+				
+				var href = _this.getAttribute('data-href');
+				var id = _this.getAttribute('data-id');
+				
+				if(href == lastView) {
+					return;
+				}
+				
+
+				var page_clssify = null;
+
+				var styles = {
+					top: '0px',
+					bottom: "0px",
+					hardwareAccelerated: false,
+					scrollIndicator: "none"
+				};
+
+			
+				page_clssify = plus.webview.create(href, href, styles);
+				mui.fire(page_clssify, 'id', {
+					id: id
+				});
+				page_clssify.addEventListener('loaded', function() {
+					
+					setTimeout(function() {
+						page_clssify.show('slide-in-right', 300);
+					}, 100);
+				}, false);
+				
+
+				page_clssify.addEventListener('close', function() { //页面关闭后可再次打开
+					lastView = null;
+
+				}, false);
+
+				lastView = href;
+
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,455 @@
+{
+  "index.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "view/Home/tab-webview-subpage-about.html",
+      "fonts/iconfont.css",
+      "css/base.css",
+      "css/style.css",
+      "js/flexible.js",
+      "fonts/iconfont.woff",
+      "view/Home/home.html",
+      "view/Me/me.html"
+    ],
+    "refer": [
+      "view/Contact/tab-webview-subpage-contact.html",
+      "view/Chat/tab-webview-subpage-chat.html",
+      "view/Home/tab-webview-subpage-about.html",
+      "view/Setting/tab-webview-subpage-setting.html",
+      "view/Home/home.html",
+      "view/Good/good.html",
+      "view/Stores/store.html",
+      "view/Me/me.html"
+    ]
+  },
+  "view/Home/tab-webview-subpage-about.html": {
+    "resources": [
+      "css/base.css",
+      "fonts/iconfont.css",
+      "css/style.css",
+      "js/flexible.js",
+      "fonts/iconfont.woff",
+      "view/Home/shop_3.png",
+      "view/Home/kind_7.png",
+      "view/Home/kind_6.png",
+      "view/Home/shop_1.png",
+      "view/Home/shop_2.png",
+      "view/Home/kind_4.png",
+      "view/Home/kind_9.png",
+      "view/Home/kind_5.png",
+      "view/Home/kind_3.png",
+      "view/Home/kind_1.png",
+      "view/Home/shop_4.png",
+      "view/Home/kind_10.png",
+      "view/Home/kind_8.png",
+      "view/Home/shop_5.png",
+      "view/Home/kind_2.png",
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": []
+  },
+  "view/Home/home.html": {
+    "resources": [
+      "fonts/iconfont.woff",
+      "view/Home/shop_3.png",
+      "view/Home/kind_7.png",
+      "view/Home/kind_6.png",
+      "view/Home/shop_1.png",
+      "view/Home/shop_2.png",
+      "view/Home/kind_4.png",
+      "view/Home/kind_5.png",
+      "view/Home/kind_9.png",
+      "view/Home/kind_3.png",
+      "view/Home/kind_1.png",
+      "view/Home/shop_4.png",
+      "view/Home/kind_10.png",
+      "view/Home/kind_8.png",
+      "view/Home/shop_5.png",
+      "view/Home/kind_2.png",
+      "css/base.css",
+      "css/style.css",
+      "fonts/iconfont.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/flexible.js",
+      "view/Home/home-content.html",
+      "js/common.js"
+    ],
+    "refer": [
+      "view/Home/home-content.html",
+      "view/Classify/classify.html",
+      "view/Classify/allclass.html"
+    ]
+  },
+  "view/Chat/tab-webview-subpage-chat.html": {
+    "resources": [
+      "fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "view/Home/home-content.html": {
+    "resources": [
+      "view/Home/shop_3.png",
+      "view/Home/kind_7.png",
+      "view/Home/kind_6.png",
+      "view/Home/shop_1.png",
+      "view/Home/shop_2.png",
+      "view/Home/kind_4.png",
+      "view/Home/kind_5.png",
+      "view/Home/kind_9.png",
+      "view/Home/kind_3.png",
+      "view/Home/kind_1.png",
+      "view/Home/shop_4.png",
+      "view/Home/kind_10.png",
+      "view/Home/kind_8.png",
+      "view/Home/shop_5.png",
+      "view/Home/kind_2.png",
+      "css/base.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css",
+      "fonts/iconfont.css",
+      "js/flexible.js",
+      "fonts/iconfont.woff",
+      "view/Details/details.html",
+      "js/common.js"
+    ],
+    "refer": [
+      "view/Classify/classify.html",
+      "view/Details/details.html",
+      "view/Stores/shopD.html"
+    ]
+  },
+  "view/Setting/tab-webview-subpage-setting.html": {
+    "resources": [
+      "fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "view/Classify/classify.html": {
+    "resources": [
+      "fonts/iconfont.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/flexible.js",
+      "fonts/iconfont.woff",
+      "css/base.css",
+      "js/common.js"
+    ],
+    "refer": [
+      "view/Details/details.html"
+    ]
+  },
+  "view/Good/good.html": {
+    "resources": [
+      "js/mui.pullToRefresh.js",
+      "js/mui.pullToRefresh.material.js",
+      "fonts/mui.ttf",
+      "fonts/iconfont.css",
+      "css/base.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/flexible.js",
+      "fonts/iconfont.woff",
+      "js/common.js"
+    ],
+    "refer": [
+      "view/Details/details.html"
+    ]
+  },
+  "view/Stores/store.html": {
+    "resources": [
+      "js/mui.pullToRefresh.js",
+      "js/mui.pullToRefresh.material.js",
+      "fonts/iconfont.woff",
+      "fonts/iconfont.css",
+      "css/base.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/flexible.js",
+      "view/Home/shop_5.png",
+      "view/Stores/tab-top-subpage-1.html",
+      "js/webviewGroup.js",
+      "js/common.js"
+    ],
+    "refer": [
+      "view/Stores/shopD.html",
+      "view/Stores/tab-top-subpage-1.html",
+      "view/Stores/tab-top-subpage-3.html",
+      "view/Stores/tab-top-subpage-5.html",
+      "view/Stores/tab-top-subpage-2.html",
+      "view/Stores/tab-top-subpage-4.html",
+      "view/Details/details.html"
+    ]
+  },
+  "view/Me/me.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "fonts/iconfont.css",
+      "css/base.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/flexible.js",
+      "index.html",
+      "js/common.js",
+      "view/Me/avatar.png"
+    ],
+    "refer": [
+      "index.html",
+      "view/login.html",
+      "view/Login/login.html",
+      "view/AlertUser/alertUser.html"
+    ]
+  },
+  "view/Details/details.html": {
+    "resources": [
+      "fonts/iconfont.css",
+      "css/base.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/flexible.js",
+      "fonts/mui.ttf",
+      "fonts/iconfont.woff",
+      "js/common.js",
+      "js/share.js",
+      "js/Hcommon.js"
+    ],
+    "refer": [
+      "view/Cart/cart.html",
+      "index.html"
+    ]
+  },
+  "view/Stores/shopD.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "fonts/iconfont.css",
+      "css/base.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/flexible.js",
+      "fonts/iconfont.woff",
+      "js/common.js",
+      "view/Home/shop_1.png",
+      "view/Stores/storeBg.png",
+      "js/Hcommon.js",
+      "js/share.js"
+    ],
+    "refer": []
+  },
+  "view/Stores/tab-top-subpage-1.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/iconfont.css",
+      "css/base.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/flexible.js"
+    ],
+    "refer": []
+  },
+  "view/Stores/tab-top-subpage-2.html": {
+    "resources": [
+      "fonts/iconfont.css",
+      "css/base.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/flexible.js",
+      "js/mui.min.js"
+    ],
+    "refer": []
+  },
+  "view/Stores/tab-top-subpage-3.html": {
+    "resources": [
+      "fonts/iconfont.css",
+      "css/base.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/flexible.js",
+      "js/mui.min.js"
+    ],
+    "refer": []
+  },
+  "view/Stores/tab-top-subpage-5.html": {
+    "resources": [
+      "fonts/iconfont.css",
+      "css/base.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/flexible.js",
+      "js/mui.min.js"
+    ],
+    "refer": []
+  },
+  "view/Stores/tab-top-subpage-4.html": {
+    "resources": [
+      "fonts/iconfont.css",
+      "css/base.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/flexible.js",
+      "js/mui.min.js"
+    ],
+    "refer": []
+  },
+  "view/Cart/cart.html": {
+    "resources": [
+      "fonts/iconfont.css",
+      "css/base.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/flexible.js",
+      "js/common.js"
+    ],
+    "refer": [
+      "view/Pay/pay.html"
+    ]
+  },
+  "view/login.html": {
+    "resources": [
+      "js/app.js",
+      "js/mui.enterfocus.js",
+      "fonts/iconfont.css",
+      "css/base.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css"
+    ],
+    "refer": [
+      "view/reg.html",
+      "view/forget_password.html"
+    ]
+  },
+  "view/reg.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "js/app.js",
+      "fonts/iconfont.css",
+      "css/base.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css"
+    ],
+    "refer": []
+  },
+  "view/forget_password.html": {
+    "resources": [
+      "js/app.js",
+      "fonts/iconfont.css",
+      "css/base.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css"
+    ],
+    "refer": []
+  },
+  "view/Login/login.html": {
+    "refer": [
+      "view/Register/register.html",
+      "view/ResetPassword/resetPassword.html",
+      "view/ResetPassword/reset.html",
+      "view/ResetPassword/updatePassword.html"
+    ],
+    "resources": [
+      "fonts/iconfont.css",
+      "css/base.css",
+      "view/Login/logo.png",
+      "js/common.js",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css",
+      "fonts/iconfont.woff"
+    ]
+  },
+  "view/Register/register.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "css/base.css",
+      "js/common.js",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css"
+    ]
+  },
+  "view/ResetPassword/resetPassword.html": {
+    "resources": [
+      "fonts/mui.ttf"
+    ],
+    "refer": [
+      "view/ResetPassword/reset.html"
+    ]
+  },
+  "view/ResetPassword/updatePassword.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "fonts/iconfont.css",
+      "css/base.css",
+      "js/common.js",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css"
+    ]
+  },
+  "view/AlertUser/alertUser.html": {
+    "resources": [
+      "js/mui.picker.js",
+      "js/mui.poppicker.js",
+      "css/mui.poppicker.css",
+      "css/mui.picker.css",
+      "fonts/iconfont.css",
+      "css/base.css",
+      "js/common.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css",
+      "view/AlertUser/avatar.png"
+    ],
+    "refer": [
+      "view/ResetPassword/updatePassword.html"
+    ]
+  },
+  "view/Pay/pay.html": {
+    "resources": [
+      "fonts/iconfont.css",
+      "css/base.css",
+      "js/common.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/flexible.js"
+    ]
+  },
+  "view/Classify/allclass.html": {
+    "resources": [
+      "fonts/iconfont.css",
+      "css/base.css",
+      "js/common.js",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/flexible.js",
+      "fonts/iconfont.woff"
+    ],
+    "refer": [
+      "view/Details/details.html"
+    ]
+  }
+}

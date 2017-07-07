@@ -1,0 +1,353 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript" src="../../js/flexible.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../fonts/iconfont.css" />
+		<link rel="stylesheet" href="../../css/style.css" />
+	</head>
+
+	<style>
+		.list-warp {
+			overflow: hidden;
+		}
+		
+		.clist {
+			height: 45px;
+			background: #fff;
+			line-height: 45px;
+			overflow: hidden;
+			overflow-x: scroll;
+			-webkit-overflow-scrolling: touch;
+			white-space: nowrap;
+			text-align: center;
+			background: #fff;
+		   
+		}
+		
+		.clist::-webkit-scrollbar {
+			display: none;
+		}
+		
+		.clist li {
+			display: inline-block;
+			width: 50px;
+			font-size: 14px;
+		}
+		
+		.clist li.active {
+			color: #e64275;
+		}
+	</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav  w-home-bar" id="w-home-bar">
+			<a class="mui-action-back  mui-icon iconfont icon-jiantou mui-pull-left"></a>
+			<div class="mui-title">
+				<span class="mui-icon iconfont icon-sousuo  mui-pull-right"></span>
+			<input type="search"  placeholder="请输入您要找的商品" class="input-select" onchange="selectinput(this)"/>
+
+			</div>
+			<a class="mui-icon iconfont icon-zhuye2 mui-pull-right"></a>
+		</header>
+		<div class="mui-content">
+
+			<div class="list-warp">
+
+				<ul class="clist" style="overflow-y: hidden;" id="clist">
+					<!--<li class="active"  data-type="FZ">
+							女装
+						</li>-->
+
+			</div>
+		</div>
+
+		<!--<div class="mui-slider-group">-->
+
+		<div class="mui-slider w-top-slider" style="overflow: hidden;">
+			<div class="mui-slider-group">
+
+			</div>
+			<div class="mui-slider-indicator">
+
+			</div>
+		</div>
+
+		<div id="pullrefresh" class="mui-scroll-wrapper mui-slider-item mui-control-content mui-active">
+
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul class="shop-list" style="padding-top:0px;">
+
+				</ul>
+				<!--</div>-->
+			</div>
+		</div>
+
+		</div>
+
+		<script src="../../js/mui.min.js"></script>
+				<script src="../../js/common.js"></script>
+		<script src="../../js/mui.pullToRefresh.js"></script>
+		<!--	<script src="../../js/mui.pullToRefresh.material.js"></script>-->
+		<script>
+			mui.init({
+				pullRefresh: {
+					container: "#pullrefresh", //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+					up: {
+						height: 50, //可选.默认50.触发上拉加载拖动距离
+						auto: true, //可选,默认false.自动上拉加载一次
+						contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+						contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: pullupRefresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					}
+				}
+			});
+
+			function plusReady() {
+
+				mui('.w-top-slider').slider({
+					interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
+				});
+			}
+
+			// 判断扩展API是否准备，否则监听"plusready"事件
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener("plusready", plusReady, false);
+			}
+			var page = 1;
+			var prdType="FZ";
+			var prdName="";
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			
+		
+
+			function pullupRefresh() {
+
+				mui.ajax(BASEURL + '/homeInfo.action?shopInfo=&prdType='+prdType+'&pageno=' + page+'&prdName='+prdName, {
+
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					success: function(data) {
+
+						if(data.result == "success") {
+
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(++page > data.maxpage);
+							var data = data.data;
+
+							//参数为true代表没有更多数据了。
+							var table = document.body.querySelector('.shop-list');
+							//var cells = document.body.querySelectorAll('.mui-table-view-cell');
+							for(var i = 0; i < data.length; i++) {
+								var li = document.createElement('li');
+								li.className = 'shop-item';
+								li.innerHTML = '<div class="sitem-top">' +
+									'<img src="' + BASEURL + data[i]['vndImg'] + '" class="shop-icon"/>' +
+									'<div class="shop-text">' +
+									'<div class="shop-text-l">' +
+									'<h3>' + data[i]['vndName'] + '</h3>' +
+									'<p>' +
+									//										'<span>销量 999</span>' +
+									//										'<span>共164商品</span>' +
+									'</p>' +
+									'</div>' +
+									'<a class="shop-open-btn"  data-href="./shopD.html" data-id=' + data[i]['vndCd'] + ' onclick="toUrl(this)">' +
+									'进店' +
+									'</a>' +
+									'</div>' +
+									'</div>' +
+									'<div class="sitem-content">' +
+									'<div class="sitem-content-i" onclick="toUrl(this)"  data-href="../Details/details.html" data-id="' + data[i]['foodData'][0]['prdCd'] + '">' +
+									'<img src="' + BASEURL + data[i]['foodData'][0]['prdUri'] + '"/>' +
+									'<p class="sci-rmb">￥' + data[i]['foodData'][0]['prdZkprice'] + '</p>' +
+									'</div>' +
+									'<div class="sitem-content-i" onclick="toUrl(this)"  data-href="../Details/details.html" data-id="' + data[i]['foodData'][1]['prdCd'] + '">' +
+									'<img src="' + BASEURL + data[i]['foodData'][1]['prdUri'] + '"/>' +
+									'<p class="sci-rmb">￥' + data[i]['foodData'][1]['prdZkprice'] + '</p>' +
+									'</div>' +
+									'<div class="sitem-content-i" onclick="toUrl(this)"  data-href="../Details/details.html" data-id="' + data[i]['foodData'][2]['prdCd'] + '">' +
+									'<img src="' + BASEURL + data[i]['foodData'][1]['prdUri'] + '"/>' +
+									'<p class="sci-rmb">￥' + data[i]['foodData'][1]['prdZkprice'] + '</p>' +
+									'</div>' +
+									'</div>' +
+									'<div class="sitem-bottom"></div>';
+								table.appendChild(li);
+
+							}
+
+						} else if(data.result == "fail") {
+//							mui.toast(data.msg, {
+//								duration: 'long',
+//								type: 'div'
+//							});
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true)
+						}
+
+					},
+					error: function(xhr, type, errorThrown) {
+//						mui.toast("数据获取失败", {
+//							duration: 'long',
+//							type: 'div'
+//						});
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true)
+					}
+				});
+			}
+
+			//页面跳转
+			var lastView = null;
+
+			function toUrl(_this) {
+
+				var href = _this.getAttribute('data-href');
+				var id = _this.getAttribute('data-id');
+
+				if(href == lastView) {
+					return;
+				}
+
+				var page_clssify = null;
+
+				var styles = {
+					top: '0px',
+					bottom: "0px",
+					hardwareAccelerated: false,
+					scrollIndicator: "none"
+				};
+
+				page_clssify = plus.webview.create(href, href, styles);
+				mui.fire(page_clssify, 'id', {
+					id: id
+				});
+				page_clssify.addEventListener('loaded', function() {
+
+					setTimeout(function() {
+						page_clssify.show('slide-in-right', 300);
+					}, 100);
+				}, false);
+
+				page_clssify.addEventListener('close', function() { //页面关闭后可再次打开
+					lastView = null;
+
+				}, false);
+
+				lastView = href;
+
+			}
+
+			document.addEventListener("DOMContentLoaded", function() {
+				_ajax(BASEURL + "/homeInfo.action?homeType=PI", function(data) {
+
+					if(data.result == "success") {
+						var siderC = document.body.querySelector('.mui-slider-indicator');
+						var sider = document.body.querySelector('.mui-slider-group');
+						var itemCHtml = "";
+						for(var i = 0; i < data.data.length; i++) {
+
+							var item = document.createElement('div');
+
+							item.className = 'mui-slider-item';
+
+							item.innerHTML = '<a onclick="toUrl(this)"  data-href="./shopD.html" data-id="' + data.data[i]['vndCd'] + '"><img src="' + BASEURL + data.data[i]['vndNimg'] + '" /></a>';
+							if(i == 0) {
+								itemCHtml += '<div class="mui-indicator mui-active"></div>'
+							} else {
+								itemCHtml += '<div class="mui-indicator"></div>'
+							}
+
+							sider.appendChild(item);
+
+						}
+						console.log(itemCHtml)
+						siderC.innerHTML = itemCHtml;
+					}
+
+				});
+			});
+	 function selectinput(_this){
+		  
+				 prdName=_this.value;
+				
+				if(prdName!=""){
+					 page =1;
+		
+			 
+				var table = document.body.querySelector('.shop-list');
+			 table.innerHTML="";
+			 pullupRefresh();
+			
+			 mui('#pullrefresh').pullRefresh().refresh(true);
+				}
+			}
+			function _ajax(url, dataCallback) {
+				mui.ajax(url, {
+
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					success: dataCallback,
+					error: function(xhr, type, errorThrown) {
+						//异常处理；
+						console.log(type);
+					}
+				});
+			}
+			var clist = document.getElementById('clist');
+			_ajax(BASEURL + '/homeInfo.action?homeType=HL', function(data) {
+				if(data.result == "success") {
+					var data = data.data;
+					for(var i = 0; i < data.length; i++) {
+						var item = document.createElement('li');
+						item.className = i == 0 ? "active" : "";
+						item.textContent = data[i]['ptyName'];
+						item.setAttribute('data-type', data[i]['ptyCd'])
+						clist.appendChild(item)
+					}
+					mui('#clist').on('tap', 'li', clickItem)
+				}
+			});
+			clist.addEventListener('scroll', function() {
+				var scrollLeft = clist.scrollLeft;
+				console.log(clist.scrollLeft);
+			});
+
+			//		    mui('#clist li').each(function(i,item){
+			//		    	
+			////		    	item.addEventListener('tap',clickItem,false)
+			//		    });
+			function clickItem() {
+				mui('#clist li').each(function(i, item) {
+					item.className = "";
+				})
+				this.className = "active";
+				
+				var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+				clist.scrollLeft = this.offsetLeft - ((w - 50) / 2);
+				page = 1;
+				prdType=this.getAttribute('data-type');
+				var table = document.body.querySelector('.shop-list');
+				table.innerHTML = "";
+				mui('#pullrefresh').pullRefresh().refresh(true);
+				pullupRefresh();
+			}
+		</script>
+	</body>
+
+</html>

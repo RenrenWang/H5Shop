@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <script type="text/javascript" src="../../js/flexible.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../fonts/iconfont.css" />
+		<link rel="stylesheet" href="../../css/style.css" />
+	     <style>
+	     	.mui-table-view-cell>a:not(.mui-btn){
+	     		margin: -5px 0;
+	     	}
+	     </style>
+	</head>
+
+	<body>
+	    <div class="top-info" id="top-info">
+	    	  
+	    </div>
+		<div class="mui-content">
+			
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" onclick="toUrl(this)" data-href="../Login/login.html">
+					<a class="mui-navigate-right">
+						用户登录
+					</a>
+				</li>
+				<!--<li class="mui-table-view-cell" onclick="lastNew()">
+					<a class="mui-navigate-right">
+						检查更新
+					</a>
+				</li>-->
+				
+			</ul>
+			<!--<ul class="mui-table-view" style="margin-top: 25px;">
+				<li class="mui-table-view-cell">
+					<a id="about" class="mui-navigate-right"   onclick="toUrl(this)">
+						关于我们
+					</a>
+				</li>
+			</ul>-->
+			<ul class="mui-table-view" style="margin-top: 25px;">
+				<li class="mui-table-view-cell" onclick="logout()">
+					<a style="text-align: center;color: #e82c67;">
+						退出登录
+					</a>
+				</li>
+			</ul>
+		</div>
+		</style>
+	</body>
+	<script src="../../js/mui.min.js"></script>
+	<script src="../../js/common.js"></script>
+	<script>
+		mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+	function lastNew(){
+	mui.alert("当前已经是最新版本");
+}
+		function logout(){
+			var topInfo=document.getElementById('top-info');
+			topInfo.innerHTML="";
+			localStorage.removeItem("user");
+			html='<div class="info" onclick="toUrl(this)" data-href="../Login/login.html">'+
+	    	   	   '<img  src="http://q1.qlogo.cn/g?b=qq&k=nbAhM5OrTCMqZ1icAJsV8Ww&s=140&t=1483369313"  class="head"/>'+
+	    	   	   '<p class="username">立即登录</p>'+
+	    	  '</div>';
+		   topInfo.innerHTML=html;
+		}
+		mui.plusReady(function(){
+			
+			var user=isLogin();
+			var html="";
+			console.log("我的界面user------->"+JSON.stringify(user))
+			if(user){
+			var pinfoSname=user.pinfoSname?user.pinfoSname:"正在构思伟大的签名";
+			console.log("user----->"+JSON.stringify(user));
+				html='<div class="info"  onclick="toUrl(this)" data-href="../AlertUser/alertUser.html">'+
+	    	   	   '<img  src="./avatar.png"  class="head"/>'+
+	    	   	   '<p class="username">'+user.username+'</p>'+
+	    	  '</div>';
+		    		
+			  
+		     }else{
+		     	html='<div class="info" onclick="toUrl(this)" data-href="../Login/login.html">'+
+	    	   	   '<img  src="./avatar.png"  class="head"/>'+
+	    	   	   '<p class="username">立即登录</p>'+
+	    	  '</div>';
+		     }
+			
+			 document.getElementById('top-info').innerHTML=html;
+		})
+		
+	</script>
+</html>

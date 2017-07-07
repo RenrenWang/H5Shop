@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript" src="../../js/flexible.js"></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/base.css" />
+		<link rel="stylesheet" href="../../fonts/iconfont.css" />
+		<link rel="stylesheet" href="../../css/style.css" />
+	</head>
+	<style>
+		body,
+		html {
+			background: #f2f4f3;
+			min-height: 100%
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav  details-top-bar">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<!--<h1 class="mui-title">导航栏</h1>-->
+			<a class="mui-icon  iconfont icon-naviconhome mui-pull-right" id="toIndex" ></a>
+<!--			<a class="mui-icon  iconfont icon-fenxiang mui-pull-right" onclick="shareShow()"></a>
+-->		</header>
+
+		<div class="mui-slider">
+			<div class="mui-slider-group" id="mui-slider-group">
+
+				<!--<div class="mui-slider-item">
+					<a href="#"><img src="https://img.alicdn.com/bao/uploaded/i4/875501526/TB25PL0jHtlpuFjSspoXXbcDpXa_!!875501526.jpg_430x430q90.jpg" /></a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#"><img src="https://img.alicdn.com/bao/uploaded/i4/875501526/TB25PL0jHtlpuFjSspoXXbcDpXa_!!875501526.jpg_430x430q90.jpg" /></a>
+				</div>
+				<div class="mui-slider-item">
+					<a href="#"><img src="https://img.alicdn.com/bao/uploaded/i4/875501526/TB25PL0jHtlpuFjSspoXXbcDpXa_!!875501526.jpg_430x430q90.jpg" /></a>
+				</div>-->
+			</div>
+		</div>
+		<div class="details-header">
+			<div class="details-header-text">
+				<h3 class="text-hidden" id="prdtext"></h3>
+				<div class="rmbs" id="rmbs">
+
+				</div>
+			</div>
+			<p class="details-header-like">
+
+				<span class="mui-icon iconfont icon-123fuzhi"></span>
+				<span>收藏</span>
+
+			</p>
+		</div>
+		<div class="click-show-imgs mui-navigate-right">
+			图文详情（点击查看图文介绍）
+		</div>
+		<div class="details-text" id="details-text">
+		</div>
+		<div class="details-imgs" id="details-imgs">
+			<!--<p><img src="https://img.alicdn.com/imgextra/i4/875501526/TB2aoDujSXlpuFjy0FeXXcJbFXa_!!875501526.jpg"></p>-->
+		</div>
+		<nav class="d-footer">
+			<a href="javascript:;" class="shopping-cart"  data-href="../Cart/cart.html"  data-id="" id="toCart" onclick="cartList(this)"><span class="mui-icon iconfont  icon-gouwuche"></span><span class="cart-number" id="shopNumber" style="opacity: 0;">1</span></a>
+			<a href="javascript:;" class="shopping-cart-add" id="shopping-cart-add" data-id="" onclick="add(this)">加入购物车</a>
+		</nav>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/common.js"></script>
+		<script type="text/javascript" src="../../js/Hcommon.js"></script>
+		<script type="text/javascript" src="../../js/share.js"></script>
+		<script>
+			mui.init();
+			var shares = null;
+			// H5 plus事件处理
+			function plusReady() {
+				//updateSerivces();
+			}
+			if(window.plus) {
+				plusReady();
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+			var gallery = mui('.mui-slider');
+			gallery.slider({
+				interval: 0 //自动轮播周期，若为0则不自动播放，默认为0；
+			});
+		    var user=isLogin();
+		    console.log(JSON.stringify(user));
+			function cartList(_this){
+				if(!user){
+					return mui.alert("未登录请先登录");
+				}
+				
+				toUrl(_this);
+			}
+			document.addEventListener('DOMContentLoaded',function(){
+				var shopNumber= document.getElementById('shopNumber');
+				if(user){
+				console.log(JSON.stringify(user));
+				
+				  shopNumber.style.opacity=1;
+				  shopNumber.textContent=user.shoppingNums;
+			    }else{
+			    	 shopNumber.style.opacity=0;
+			    }
+				
+			})
+			window.addEventListener('id', function(event) {
+				mui.ajax(BASEURL + '/homeInfo.action?homeType=FS&prdCd=' + event.detail.id, {
+
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					success: function(data) {
+
+						if(data.result == "success") {
+          
+							var data = data.data;
+							console.log(JSON.stringify(data))
+					   document.getElementById('shopping-cart-add').setAttribute('data-id', data[0]['prdIds']);
+
+							document.getElementById('prdtext').textContent = data[0]['prdName'];
+							document.getElementById('details-text').textContent = data[0]['prdText']
+							document.getElementById('details-imgs').innerHTML = '<p><img src="' + BASEURL + data[0]['prdSuri'] + '" width="100%" data-src="'+ BASEURL + data[0]['prdSuri']+'" id="details-img"></p>'
+							document.getElementById('mui-slider-group').innerHTML = '<div class="mui-slider-item"><a href="#"><img src="' + BASEURL + data[0]['prdUri'] + '" /></a></div>';
+							document.getElementById('rmbs').innerHTML = '<p>现价<span class="red rmb">￥' + data[0]['prdZkprice'] + '</span></p><p>原价￥' + data[0]['prdOldprice'] + '</p>';
+                            content=data[0]['prdText'];
+							//参数为true代表没有更多数据了。
+							//							
+							//							for(var i = 0; i < data.length; i++) {
+							//								var li = document.createElement('li');
+							//								console.log(data[i]['prdText']);
+							//								li.className = 'mui-table-view-cell mui-media';
+							//								li.innerHTML = '<a data-href="../Details/details.html" onclick="toUrl(this,'+data[i]['prdIds']+')">' +
+							//							'<img class="mui-media-object mui-pull-left" src="'+BASEURL+data[i]['prdUri']+'">' +
+							//							'<div class="mui-media-body">' +
+							//							'<h3 class="text-hidden">'+data[i]['prdText']+'</h3>' +
+							//							'<p class="mui-ellipsis">销量：'+data[i]['prdNums']+'</p>' +
+							//							'<p class="mui-ellipsis">原价：￥'+data[i]['prdOldprice']+'</p>' +
+							//							'<p  class="mui-ellipsis">现价:<span class=" rmb">￥'+data[i]['prdZkprice']+'</span></p>' +
+							//							'</div>' +
+							//							'</a>';
+							//								table.appendChild(li);
+							//
+							//							}
+
+						} else if(data.result == "fail") {
+							mui.toast(data.msg, {
+								duration: 'long',
+								type: 'div'
+							});
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true)
+						}
+
+					},
+					error: function(xhr, type, errorThrown) {
+						//异常处理；
+						console.log(type);
+					}
+				});
+
+			})
+	
+			function add(_this) {
+				if(!user){
+					return mui.alert("未登录请先登录");
+				}
+				var pr_id = _this.getAttribute('data-id');
+				
+				if(pr_id) {
+					console.log(pr_id);
+					mui.ajax(BASEURL + '/shoppingCardAction.action?homeType=NEW&pinfoId='+user.pinfoId+'&prdIds='+pr_id+'&prdNums=1', {
+
+						dataType: 'json', //服务器返回json格式数据
+						type: 'get', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						headers: {
+							'Content-Type': 'application/json'
+						},
+					success: function(data) {
+                    //console.log(JSON.stringify(data.msg))
+							if(data.result == "success") {
+              
+								
+							console.log(JSON.stringify(data));
+							user.shoppingNums=user.shoppingNums+1;
+						
+							setLocalStorage("user",user);
+							//document.getElementById('toCart').setAttribute('data-id',user.shoppingNums)
+							 shopNumber.textContent=user.shoppingNums;
+								mui.toast("添加成功", {
+									duration: 'short',
+									type: 'div'
+								});
+
+							} else if(data.result == "fail") {
+								mui.toast(data.msg, {
+									duration: 'short',
+									type: 'div'
+								});
+
+							}
+
+						},
+						error: function(xhr, type, errorThrown) {
+							//异常处理；
+							console.log(type);
+						}
+					});
+
+				}
+			}
+			
+//				document.getElementById('toIndex').addEventListener('tap',function(){
+//				 var main = plus.webview.getLaunchWebview();
+//			//触发主页面的gohome事件
+//		     	mui.fire(main,'goindex');
+//				main.close();
+//				})
+		</script>
+	</body>
+
+</html>
