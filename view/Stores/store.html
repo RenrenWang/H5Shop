@@ -119,9 +119,7 @@
 
 			function plusReady() {
 
-				mui('.w-top-slider').slider({
-					interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
-				});
+			
 			}
 
 			// 判断扩展API是否准备，否则监听"plusready"事件
@@ -172,21 +170,21 @@
 									//										'<span>共164商品</span>' +
 									'</p>' +
 									'</div>' +
-									'<a class="shop-open-btn"  data-href="./shopD.html" data-id=' + data[i]['vndCd'] + ' onclick="toUrl(this)">' +
+									'<a class="shop-open-btn onClick"  data-href="./shopD.html" data-id=' + data[i]['vndCd'] + ' >' +
 									'进店' +
 									'</a>' +
 									'</div>' +
 									'</div>' +
 									'<div class="sitem-content">' +
-									'<div class="sitem-content-i" onclick="toUrl(this)"  data-href="../Details/details.html" data-id="' + data[i]['foodData'][0]['prdCd'] + '">' +
+									'<div class="sitem-content-i onClick"  data-href="../Details/details.html" data-id="' + data[i]['foodData'][0]['prdCd'] + '">' +
 									'<img src="' + BASEURL + data[i]['foodData'][0]['prdUri'] + '"/>' +
 									'<p class="sci-rmb">￥' + data[i]['foodData'][0]['prdZkprice'] + '</p>' +
 									'</div>' +
-									'<div class="sitem-content-i" onclick="toUrl(this)"  data-href="../Details/details.html" data-id="' + data[i]['foodData'][1]['prdCd'] + '">' +
+									'<div class="sitem-content-i onClick"   data-href="../Details/details.html" data-id="' + data[i]['foodData'][1]['prdCd'] + '">' +
 									'<img src="' + BASEURL + data[i]['foodData'][1]['prdUri'] + '"/>' +
 									'<p class="sci-rmb">￥' + data[i]['foodData'][1]['prdZkprice'] + '</p>' +
 									'</div>' +
-									'<div class="sitem-content-i" onclick="toUrl(this)"  data-href="../Details/details.html" data-id="' + data[i]['foodData'][2]['prdCd'] + '">' +
+									'<div class="sitem-content-i onClick"   data-href="../Details/details.html" data-id="' + data[i]['foodData'][2]['prdCd'] + '">' +
 									'<img src="' + BASEURL + data[i]['foodData'][1]['prdUri'] + '"/>' +
 									'<p class="sci-rmb">￥' + data[i]['foodData'][1]['prdZkprice'] + '</p>' +
 									'</div>' +
@@ -269,7 +267,7 @@
 
 							item.className = 'mui-slider-item';
 
-							item.innerHTML = '<a onclick="toUrl(this)"  data-href="./shopD.html" data-id="' + data.data[i]['vndCd'] + '"><img src="' + BASEURL + data.data[i]['vndNimg'] + '" /></a>';
+							item.innerHTML = '<a class="onClick"  data-href="./shopD.html" data-id="' + data.data[i]['vndCd'] + '"><img src="' + BASEURL + data.data[i]['vndNimg'] + '" /></a>';
 							if(i == 0) {
 								itemCHtml += '<div class="mui-indicator mui-active"></div>'
 							} else {
@@ -281,6 +279,9 @@
 						}
 						console.log(itemCHtml)
 						siderC.innerHTML = itemCHtml;
+							mui('.w-top-slider').slider({
+					interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
+				});
 					}
 
 				});

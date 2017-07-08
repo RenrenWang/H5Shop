@@ -152,9 +152,7 @@
 
 			function plusReady() {
 
-				mui('.mui-slider').slider({
-					interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
-				});
+			
 
 				ws = plus.webview.currentWebview();
 				//				ws.addEventListener('loaded', function() {
@@ -218,8 +216,12 @@
 							sider.appendChild(item);
 							
 						}
+						
 						console.log(itemCHtml)
 						siderC.innerHTML=itemCHtml;
+							mui('.mui-slider').slider({
+					interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
+				});
 					}
 
 				});
