@@ -16,7 +16,17 @@
 
 		<div class="w-content">
 
-			<div class="mui-slider w-top-slider">
+			
+			<div class="section">
+				<div class="section-top">
+					<h2 class="title"><span class="bold-tit">今日专享</span></span><span class="tit">疯狂抢购</span></h2>
+				</div>
+				<div class="section-content" style="background: #efeff4;padding: 0;">
+					<div id="content" class="ios-content mui-scroll-wrapper"><!--数据列表-->
+					<div id="pullrefresh" class="mui-content mui-scroll-wrapper classify-wrapper" >
+						<div class="mui-scroll">
+							
+							<div class="mui-slider w-top-slider">
 				<div class="mui-slider-group "><!--mui-slider-loop-->
 					<!--<div class="mui-slider-item mui-slider-item-duplicate">
 						<a href="#"><img src="https://aecpm.alicdn.com/simba/img/TB1_JXrLVXXXXbZXVXXSutbFXXX.jpg" /></a>
@@ -92,19 +102,12 @@
 					</ul>
 				</div>
 			</div>
-			<div class="section">
-				<div class="section-top">
-					<h2 class="title"><span class="bold-tit">今日专享</span></span><span class="tit">疯狂抢购</span></h2>
-				</div>
-				<div class="section-content" style="background: #efeff4;padding: 0;">
-					<!--数据列表-->
-					<div id="pullrefresh" class="mui-content mui-scroll-wrapper classify-wrapper">
-						<div class="mui-scroll">
 							<!--数据列表-->
 							<ul class="mui-table-view classify-list" style=" padding-top: 0px;">
 							</ul>
 						</div>
 					</div>	
+					</div>
 					<!--<ul class="grid-3">
 						<li>
 							<div class="mui-card">
@@ -205,7 +208,7 @@
 						
 							item.className = 'mui-slider-item';
 						
-							item.innerHTML ='<a onclick="toUrl(this)"  data-href="../Details/details.html" data-id="'+data.data[i]['prdCd']+'"><img src="'+BASEURL+data.data[i]['prdNuri']+'" /></a>';
+							item.innerHTML ='<a class="onClick"  data-href="../Details/details.html" data-id="'+data.data[i]['prdCd']+'"><img src="'+BASEURL+data.data[i]['prdNuri']+'" /></a>';
 						    if(i==0){
 						    	itemCHtml+='<div class="mui-indicator mui-active"></div>'
 						    }else{
@@ -228,8 +231,8 @@
               	   		var $list=document.getElementById('kind-list');
               	   		var html="";
               	   		for(var i=0;i<list.length;i++){
-              	   		
-              	   			html+='<li onclick="toUrl(this)"  data-href="../Classify/classify.html" data-id="'+list[i]['ptyCd']+'"> <img src="'+BASEURL+list[i]['ptyImg']+'" /></li>'
+              	   		    
+              	   			html+='<li   class="onClick"    data-href="../Classify/classify.html" data-id="'+list[i]['ptyCd']+'"> <img src="'+BASEURL+list[i]['ptyImg']+'" /></li>'
               	   		}
               	   		$list.innerHTML=html;
               	   	}
@@ -242,7 +245,7 @@
               	   		var html="";
               	   		for(var i=0;i<5;i++){
               	   		
-              	   			html+='<li data-href="../Stores/shopD.html" data-id='+list[i]['vndCd']+' onclick="toUrl(this)"> <img src="'+BASEURL+list[i]['vndImg']+'" /></li>'
+              	   			html+='<li data-href="../Stores/shopD.html" data-id='+list[i]['vndCd']+' class="onClick"> <img src="'+BASEURL+list[i]['vndImg']+'" /></li>'
               	   		}
               	   		$list.innerHTML=html;
               	   	}
@@ -299,7 +302,7 @@
 							    var id=data[i]['prdCd'];
 							   // console.log(typeof id);
 								li.className = 'mui-table-view-cell mui-media';
-								li.innerHTML = '<a data-href="../Details/details.html" data-id='+id+' onclick="toUrl(this)">' +
+								li.innerHTML = '<a data-href="../Details/details.html" data-id='+id+'  class="onClick">' +
 							'<img class="mui-media-object mui-pull-left" src="'+BASEURL+data[i]['prdUri']+'">' +
 							'<div class="mui-media-body">' +
 							'<h3 class="text-hidden">'+data[i]['prdName']+'</h3>' +

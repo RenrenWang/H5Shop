@@ -87,7 +87,7 @@ data-numbox-max='50'>
       </div>
 		
 		
-		<nav class="d-footer">
+		<nav class="d-footer" style="z-index: 9999;">
 			<a href="javascript:;" class="shopping-cart-add" onclick="pay()">结算</a>
 		</nav>
 		<script src="../../js/mui.min.js"></script>
@@ -213,6 +213,7 @@ data-numbox-max='50'>
 			
 			function   pay(){
 				var shpIdsList=[];
+			
 				  var sum=0;
 				     mui('.goods-item .input').each(function(i,item){
 				     	if(item.checked){
@@ -222,7 +223,7 @@ data-numbox-max='50'>
 				     });
 				    
 				   
-				     console.log(sum);
+				     console.log("------"+sum);
 					mui.ajax(BASEURL +'/orderAction.action?dealOrder=&homeType=NEW&pinfoId='+user.pinfoId+'&shpIdsList='+shpIdsList.join(','), {
 
 					dataType: 'json', //服务器返回json格式数据

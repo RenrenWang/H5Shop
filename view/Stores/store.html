@@ -43,6 +43,13 @@
 		.clist li.active {
 			color: #e64275;
 		}
+		.shop-list{
+			height: 100%;
+		}
+		.shop-list>li{
+			
+			height: :300px;
+		}
 	</style>
 	</head>
 
@@ -79,7 +86,7 @@
 			</div>
 		</div>
 
-		<div id="pullrefresh" class="mui-scroll-wrapper mui-slider-item mui-control-content mui-active">
+		<div id="pullrefresh" class="mui-scroll-wrapper mui-slider-item mui-control-content mui-active" >
 
 			<div class="mui-scroll">
 				<!--数据列表-->
@@ -148,7 +155,7 @@
 
 							mui('#pullrefresh').pullRefresh().endPullupToRefresh(++page > data.maxpage);
 							var data = data.data;
-
+                               document.body.querySelector('#pullrefresh').style.height=data.length*300+"px";
 							//参数为true代表没有更多数据了。
 							var table = document.body.querySelector('.shop-list');
 							//var cells = document.body.querySelectorAll('.mui-table-view-cell');

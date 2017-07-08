@@ -84,8 +84,8 @@ data-numbox-max='50'>
       </div>
 		
 		
-		<nav class="d-footer">
-			<a href="javascript:;" class="shopping-cart-add" onclick="pay()">订单支付</a>
+		<nav class="d-footer" style="z-index: 9999;">
+			<a href="javascript:void(0);" class="shopping-cart-add" onclick="pay()">订单支付</a>
 		</nav>
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/common.js"></script>
@@ -202,14 +202,15 @@ data-numbox-max='50'>
 //			console.log(shpIdsList);
 //		});
           var ordIds="";
-			window.addEventListener('id', function(event) {
+		   	window.addEventListener('id', function(event) {
 				 ordIds=event.detail.id;
+			alert(ordIds)
 			}, false)
-			function   pay(){
+			function  pay(){
 			
 				   
 				   
-				   
+				
 					mui.ajax(BASEURL +'/orderAction.action?payOrder=&ordIds='+ordIds+'&ordZftype=Z&ordZfsumm=450.00', {
 
 					dataType: 'json', //服务器返回json格式数据
@@ -235,6 +236,7 @@ data-numbox-max='50'>
 					}
 				
 			      })
+					
 			}
 			//页面跳转
 			var lastView = null;

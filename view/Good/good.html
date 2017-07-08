@@ -60,7 +60,7 @@
 				pullRefresh: {
 					container: "#pullrefresh", //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
 					up: {
-						height: 50, //可选.默认50.触发上拉加载拖动距离
+						
 						auto: true, //可选,默认false.自动上拉加载一次
 						contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
 						contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
@@ -105,7 +105,7 @@
 
 							item.className = 'mui-slider-item';
 
-							item.innerHTML = '<a onclick="toUrl(this)"  data-href="../Details/details.html" data-id="'+data.data[i]['prdCd']+'"><img src="' + BASEURL + data.data[i]['prdNuri'] + '" /></a>';
+							item.innerHTML = '<a class="onClick"  data-href="../Details/details.html" data-id="'+data.data[i]['prdCd']+'"><img src="' + BASEURL + data.data[i]['prdNuri'] + '" /></a>';
 							if(i == 0) {
 								itemCHtml += '<div class="mui-indicator mui-active"></div>'
 							} else {
@@ -185,7 +185,7 @@
 							for(var i = 0; i < data.length; i++) {
 								var li = document.createElement('li');
 								li.className = 'mui-table-view-cell mui-media';
-								li.innerHTML = '<a data-href="../Details/details.html" data-id='+data[i]['prdCd']+'  onclick="toUrl(this)">' +
+								li.innerHTML = '<a data-href="../Details/details.html" data-id='+data[i]['prdCd']+'  class="onClick">' +
 									'<img class="mui-media-object mui-pull-left" src="' + BASEURL + data[i]['prdUri'] + '">' +
 									'<div class="mui-media-body">' +
 									'<h3 class="text-hidden">' + data[i]['prdName'] + '</h3>' +
